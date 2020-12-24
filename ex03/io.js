@@ -1,16 +1,17 @@
 const fs = require('fs');
 
+let content;
 try
 {
-	var content = fs.readFileSync(process.argv[2]).toString();
+	content = fs.readFileSync(process.argv[2]).toString();
 }
 catch
 {
 	return ;
 }
 
-var cnt = 0;
-for (var i = 0; i < content.length; i++)
+let cnt = 0;
+for (let i = 0; i < content.length; i++)
 {
 	if (content[i] === '\n')
 		cnt++;
