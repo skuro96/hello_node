@@ -2,7 +2,7 @@ const fs = require('fs');
 
 try
 {
-	var content = fs.readFileSync(process.argv[2], 'utf8').toString();
+	var content = fs.readFileSync(process.argv[2]).toString();
 }
 catch
 {
