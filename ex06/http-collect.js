@@ -1,5 +1,5 @@
-let http = require('http')
-let bl = require('bl')
+const http = require('http')
+const bl = require('bl')
 
 try
 {
