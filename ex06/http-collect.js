@@ -15,7 +15,7 @@ try
             console.log(data.length);
             console.log(data);
         }));
-    });
+    }).on('error', (e) => {return ;});
 }
 catch
 {}

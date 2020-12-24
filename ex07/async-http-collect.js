@@ -13,7 +13,7 @@ function printData(url)
 				data = data.toString().replace(/\n/g, '');
 				console.log(data);
 			}));
-		});
+		}).on('error', (e) => {return ;});
 	}
 	catch
 	{}

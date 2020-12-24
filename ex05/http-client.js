@@ -11,7 +11,7 @@ try
 		res.on('end', () => {
 			console.log(html.replace(/\n/g, ''));
 		});
-	});
+	}).on('error', (e) => {return ;});
 }
 catch
 {}
