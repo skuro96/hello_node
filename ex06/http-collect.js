@@ -1,5 +1,8 @@
-const http = require('http')
-const bl = require('bl')
+const http = require('http');
+const bl = require('bl');
+
+if (process.argv.length < 3)
+    return ;
 
 try
 {

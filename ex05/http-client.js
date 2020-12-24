@@ -1,5 +1,8 @@
 const http = require('http');
 
+if (process.argv.length < 3)
+	return ;
+
 try
 {
 	http.get(process.argv[2], res => {
