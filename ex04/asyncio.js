@@ -16,5 +16,5 @@ try
 		console.log(cnt);
 	});
 }
-catch (e)
+catch
 {}

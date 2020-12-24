@@ -1,8 +1,4 @@
 var sum = 0;
-var i = 2;
-while (i < process.argv.length)
-{
+for (var i = 2; i < process.argv.length; i++)
 	sum += parseInt(process.argv[i]);
-	i++;
-}
 console.log(sum);
