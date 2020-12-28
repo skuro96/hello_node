@@ -13,27 +13,39 @@ function getDate_formatted()
 	return (year + '-' + month + '-' + day + ' ' + hour + ':' + min + '\n');
 }
 
-if (process.argv.length != 3)
-	return ;
-
-let port = parseInt(process.argv[2]);
-if (isNaN(port) || port < 0 || 65535 < port)
-	return ;
-
-let server = net.createServer((res) => {
-	res.on('error', (e) => {
+function main()
+{
+	if (process.argv.length != 3)
+		return ;
+	
+	let port = parseInt(process.argv[2]);
+	if (isNaN(port) || port < 0 || 65535 < port)
+		return ;
+	
+	let server = net.createServer((res) => {
+		res.on('error', (e) => {
+			console.log(e.message);
+			return ;
+		});
+	
+		res.write(getDate_formatted());
+		res.end();
+	}).on('error', (e) => {
 		console.log(e.message);
 		return ;
 	});
+	
+	server.listen(port).on('error', (e) => {
+		console.log(e.message);
+		return ;
+	});
+}
 
-	res.write(getDate_formatted());
-	res.end();
-}).on('error', (e) => {
+try
+{
+	main();
+}
+catch (e)
+{
 	console.log(e.message);
-	return ;
-});
-
-server.listen(port).on('error', (e) => {
-	console.log(e.message);
-	return ;
-});
+}
