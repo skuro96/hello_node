@@ -1,3 +1,6 @@
+if (process.argv.length != 3)
+	return ;
+
 const fs = require('fs');
 
 let content;
@@ -5,8 +8,9 @@ try
 {
 	content = fs.readFileSync(process.argv[2]).toString();
 }
-catch
+catch (e)
 {
+	console.log(e.message);
 	return ;
 }
 
