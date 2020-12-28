@@ -1,8 +1,7 @@
-const http = require('http');
-
-if (process.argv.length < 3)
+if (process.argv.length != 3)
 	return ;
 
+const http = require('http');
 try
 {
 	http.get(process.argv[2], res => {
@@ -11,7 +10,13 @@ try
 		res.on('end', () => {
 			console.log(html.replace(/\n/g, ''));
 		});
-	}).on('error', (e) => {return ;});
+	}).on('error', (e) => {
+		console.log(e.message);
+		return ;
+	});
 }
-catch
-{}
+catch (e)
+{
+	console.log(e.message);
+	return ;
+}
