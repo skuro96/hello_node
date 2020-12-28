@@ -1,33 +1,39 @@
-const http = require('http');
-const bl = require('bl');
+let http = require("http");
 
-function printData(url)
+function getCode(url) {
+	return new Promise(function (resolve, reject) {
+		http.get(url, (res) => {
+			let data = "";
+			res.on('data', (d) => {
+				data += d;
+			});
+			res.on('end', () => {
+				resolve(data.replace(/\n/g, ''));
+			});
+		}).on('error', (e) => {
+			reject(e);
+		});
+	});
+}
+
+async function main()
 {
+	if (process.argv.length != 5)
+		return ;
+
 	try
 	{
-		http.get(url, function(response) {
-			response.pipe(bl(function (err, data) {
-				if (err)
-					return ;
-	
-				data = data.toString().replace(/\n/g, '');
-				console.log(data);
-			}));
-		}).on('error', (e) => {return ;});
+		for (let i = 0; i < 3; i++)
+		{
+			ret = await getCode(process.argv[i + 2]);
+			console.log(ret);
+		}
 	}
-	catch
-	{}
-}
-
-if (process.argv.length < 5)
-	return ;
-
-try
-{
-	for (let i = 0; i < 3; i++)
+	catch (e)
 	{
-		printData(process.argv[i + 2]);
+		console.log(e.message);
+		return ;
 	}
 }
-catch
-{}
+
+main();
