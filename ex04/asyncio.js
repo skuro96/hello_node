@@ -1,12 +1,12 @@
-const fs = require('fs');
-
-if (process.argv.length < 3)
+if (process.argv.length != 3)
 	return ;
 
+const fs = require('fs');
 fs.readFile(process.argv[2], (err, content) => {
 	if (err)
+	{
+		console.log(err.message);
 		return ;
-	
-	let lines = content.toString().split('\n');
-	console.log(lines.length - 1);
+	}
+	console.log(content.toString().split('\n').length - 1);
 });
