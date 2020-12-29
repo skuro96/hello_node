@@ -6,17 +6,16 @@ function main()
 		return ;
 
 	http.get(process.argv[2], res => {
-		let code = '';
 		res.on('error', (e) => {
 			console.log(e.message);
 			return ;
-		})
+		});
+
 		res.on('data', (line) => {
-			code += line;
+			console.log(line.toString());
 		});
-		res.on('end', () => {
-			console.log(code.replace(/\n/g, ''));
-		});
+
+		res.on('end', () => {});
 	}).on('error', (e) => {
 		console.log(e.message);
 		return ;
