@@ -14,7 +14,6 @@ function main()
 		res.on('data', (line) => {
 			console.log(line.toString());
 		});
-
 		res.on('end', () => {});
 	}).on('error', (e) => {
 		console.log(e.message);

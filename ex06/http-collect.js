@@ -1,30 +1,30 @@
 const http = require('http');
-const bl = require('bl');
 
 function main()
 {
 	if (process.argv.length != 3)
 		return ;
 
-	http.get(process.argv[2], (res) => {
-		res.pipe(bl((err, data) => {
-			if (err)
-			{
-				console.log(err.message);
-				return ;
-			}
-
-			let code = data.toString().replace(/\n/g, '');
-			console.log(code.length);
-			console.log(code);
-		})).on('error', (e) => {
+	http.get(process.argv[2], res => {
+		res.on('error', (e) => {
 			console.log(e.message);
 			return ;
+		});
+
+		let data = '';
+		res.on('data', (line) => {
+			data += line;
+		});
+
+		res.on('end', () => {
+			data = data.toString().replace(/[\r\n]/g, '');
+			console.log(data.length);
+			console.log(data);
 		});
 	}).on('error', (e) => {
 		console.log(e.message);
 		return ;
-	});
+	});	
 }
 
 try
