@@ -3,12 +3,17 @@ let http = require("http");
 function getCode(url) {
 	return new Promise(function (resolve, reject) {
 		http.get(url, (res) => {
+			res.on('error', (err) => {
+				console.log(err.message);
+				return ;
+			});
+			
 			let data = '';
-			res.on('data', (d) => {
-				data += d;
+			res.on('data', (line) => {
+				data += line;
 			});
 			res.on('end', () => {
-				resolve(data.replace(/\n/g, ''));
+				resolve(data.toString());
 			});
 		}).on('error', (e) => {
 			reject(e);

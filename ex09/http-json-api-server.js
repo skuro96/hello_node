@@ -7,8 +7,6 @@ function main()
 		return ;
 	
 	let port = parseInt(process.argv[2]);
-	if (isNaN(port) || port < 0 || 65535 < port)
-		return ;
 	
 	let server = http.createServer(function (req, res) {
 		let path = req.url.split('?')[0];
