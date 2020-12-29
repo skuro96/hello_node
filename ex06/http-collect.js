@@ -15,9 +15,8 @@ function main()
 		res.on('data', (line) => {
 			data += line;
 		});
-
 		res.on('end', () => {
-			data = data.toString().replace(/[\r\n]/g, '');
+			data = data.toString();
 			console.log(data.length);
 			console.log(data);
 		});
