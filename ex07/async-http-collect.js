@@ -7,7 +7,7 @@ function getCode(url) {
 				console.log(err.message);
 				return ;
 			});
-			
+
 			let data = '';
 			res.on('data', (line) => {
 				data += line;

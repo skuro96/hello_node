@@ -17,22 +17,22 @@ function main()
 {
 	if (process.argv.length != 3)
 		return ;
-	
+
 	let port = parseInt(process.argv[2]);
-	
+
 	let server = net.createServer((res) => {
 		res.on('error', (e) => {
 			console.log(e.message);
 			return ;
 		});
-	
+
 		res.write(getDate_formatted());
 		res.end();
 	}).on('error', (e) => {
 		console.log(e.message);
 		return ;
 	});
-	
+
 	server.listen(port).on('error', (e) => {
 		console.log(e.message);
 		return ;

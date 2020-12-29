@@ -18,7 +18,7 @@ function main()
 	}).on('error', (e) => {
 		console.log(e.message);
 		return ;
-	});	
+	});
 }
 
 try
