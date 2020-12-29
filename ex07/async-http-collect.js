@@ -3,7 +3,7 @@ let http = require("http");
 function getCode(url) {
 	return new Promise(function (resolve, reject) {
 		http.get(url, (res) => {
-			let data = "";
+			let data = '';
 			res.on('data', (d) => {
 				data += d;
 			});
